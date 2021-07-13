@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <!-- Bootstrap Stylesheet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- jQuery Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest Compiled and Minified JavaScript -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style3.css" rel="stylesheet">
+    <link href="assets/css/style4.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="centered">
+        <div class="loginform container">
+            <h3 style=>Administrator Area</h3>
+            <hr />
+            <!--- Form -->
+            <form role="form" action="adminlogin.php" method="post">
+                <br>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="uname" placeholder="Username" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="pword" placeholder="Password" required> 
+                </div>
+                <br>
+                <div class="form-group">
+                    <button type="submit" class="btn" id="button1" name="submit">Login</button>
+                </div>
+                <br>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
