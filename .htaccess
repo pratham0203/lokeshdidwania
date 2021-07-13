@@ -1,8 +1,0 @@
-
-RewriteEngine on
-RewriteCond %{HTTPS} off
-RewriteCond %{HTTP:X-Forwarded-SSL} !on
-RewriteCond %{HTTP_HOST} ^lokeshdidwania\.com$ [OR]
-RewriteCond %{HTTP_HOST} ^www\.lokeshdidwania\.com$
-RewriteRule ^/?$ "https\:\/\/www\.lokeshdidwania\.com\/" [R=302,L]
-
