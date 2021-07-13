@@ -193,7 +193,7 @@
           </div>
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form action="contact.php" method="post" role="form">
               <div class="row gy-3">
 
                 <div class="col-lg-6">
@@ -207,14 +207,30 @@
                     <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
                   </div>
                 </div>
+                
                 <div class="col-lg-12">
+                  <div class="form-group">
+                    <label style="font-size: 18px; margin-bottom: 10px;">Subject:</label>
+                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                  </div>
+                </div>
+
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label style="font-size: 18px; margin-bottom: 10px;">Message:</label>
+                    <textarea class="form-control" name="message" placeholder="Message" required></textarea>
+                  </div>
+                </div>
+
+                <!-- For error messages -->
+                <!-- <div class="col-lg-12">
                   <div class="loading">Loading</div>
                   <div class="error-message"></div>
                   <div class="sent-message">Your message has been sent. Thank you!</div>
-                </div>
+                </div> -->
 
                 <div class="mt-0">
-                  <input type="submit" class="btn btn-defeault btn-send" value="Send message">
+                  <input type="submit" name="submit" class="btn btn-defeault btn-send" value="Send message">
                 </div>  
               </div>
             </form>
