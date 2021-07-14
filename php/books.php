@@ -14,15 +14,9 @@ $query = mysqli_query($conn, $select_query);
 
 $check = mysqli_fetch_array($query);
 
-if($check==NULL){
-    $book_id = 1;
-}
-else {
-    $book_id = $check['count(Book_ID)'] + 1;   
-}
 
-$sql_query = "INSERT INTO books(Book_ID, Book_Name, Book_Link, Book_Cover, Book_Description, Price, Visible)
-VALUES ('$book_id', '$book_name', '$book_link', '$book_cover', '$book_desc', '$price', '$isVisible')";
+$sql_query = "INSERT INTO books(Book_Name, Book_Link, Book_Cover, Book_Description, Price, Visible)
+VALUES ('$book_name', '$book_link', '$book_cover', '$book_desc', '$price', '$isVisible')";
 
 $ins = mysqli_query($conn,$sql_query);
 

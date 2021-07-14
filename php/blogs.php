@@ -14,16 +14,10 @@ $query = mysqli_query($conn, $select_query);
 
 $check = mysqli_fetch_array($query);
 
-if($check==NULL){
-    $blog_id = 1;
-}
-else {
-    $blog_id = $check['count(Blog_ID)'] + 1;   
-}
 
 
-$sql_query = "INSERT INTO blogs(Blog_ID, Blog_Title, Blog_Content, Blog_Image, Blog_Author, Date, Visible)
-VALUES ('$blog_id', '$blog_title', '$blog_content', '$blog_img', '$blog_author', '$date','$isVisible')";
+$sql_query = "INSERT INTO blogs(Blog_Title, Blog_Content, Blog_Image, Blog_Author, Date, Visible)
+VALUES ('$blog_title', '$blog_content', '$blog_img', '$blog_author', '$date','$isVisible')";
 
 $ins = mysqli_query($conn,$sql_query);
 
