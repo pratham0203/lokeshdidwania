@@ -2,6 +2,7 @@
 include 'connection.php';
 if(isset($_POST['submit'])){
 $book_name = $_POST['bkname'];
+$book_link = $_POST['bklink'];
 $book_cover = $_POST['cover'];
 $book_desc = $_POST['desc'];
 $price = $_POST['price'];
@@ -20,8 +21,8 @@ else {
     $book_id = $check['count(Book_ID)'] + 1;   
 }
 
-$sql_query = "INSERT INTO books(Book_ID, Book_Name, Book_Cover, Book_Description, Price, Visible)
-VALUES ('$book_id', '$book_name', '$book_cover', '$book_desc', '$price', '$isVisible')";
+$sql_query = "INSERT INTO books(Book_ID, Book_Name, Book_Link, Book_Cover, Book_Description, Price, Visible)
+VALUES ('$book_id', '$book_name', '$book_link', '$book_cover', '$book_desc', '$price', '$isVisible')";
 
 $ins = mysqli_query($conn,$sql_query);
 
