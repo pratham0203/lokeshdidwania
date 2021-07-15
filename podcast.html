@@ -86,9 +86,9 @@
           <div class="newsletter middle">
             <h2 style="color: wheat;">We Will Coming Soon</h2>
             <h4 style="color: wheat;">Subscribe to get notification when we start</h4>
-            <form action="">
-              <input type="text" placeholder="Enter Your Email">
-              <input class="newsletter-btn" type="button" value="Subscribe">
+            <form action="php/subscribe.php" method="POST">
+              <input type="email" class="form-control" placeholder="Enter Your Email" name="email" id="email" required>
+              <input class="newsletter-btn" type="submit" value="Subscribe" name="submit">  
             </form>
           </div>
         </div>
@@ -99,9 +99,9 @@
         <div class="newsletter middle">
           <h2>We Will Coming Soon</h2>
           <h4>Subscribe to get notification when we start</h4>
-          <form action="">
-            <input type="text" placeholder="Enter Your Email">
-            <input class="newsletter-btn" type="button" value="Subscribe">
+          <form action="php/subscribe.php" method="POST">
+            <input type="email" class="form-control" placeholder="Enter Your Email" name="email" id="email" required>
+            <input class="newsletter-btn" type="submit" value="Subscribe" name="submit">
           </form>
         </div>
       </div>
