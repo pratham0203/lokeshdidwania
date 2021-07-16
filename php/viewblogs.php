@@ -23,13 +23,13 @@ while ($res = mysqli_fetch_array($query)) {
 
     $query2 = mysqli_query($conn, $select_query2);
     while ($res2 = mysqli_fetch_array($query2)) {
-        $cid = $res['Comment_ID'];
-        $bid = $res['Blog_ID'];
-        $name = $res['Name'];
-        $email = $res['Email'];
-        $comment = $res['Comment'];
-        $date = $res['Date'];
-        $time = $res['Time'];
+        $cid = $res2['Comment_ID'];
+        $bid = $res2['Blog_ID'];
+        $name = $res2['Name'];
+        $email = $res2['Email'];
+        $comment = $res2['Comment'];
+        $date = $res2['Date'];
+        $time = $res2['Time'];
  ?>
 
 
