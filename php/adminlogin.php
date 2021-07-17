@@ -19,7 +19,7 @@ if($res!=NULL)
 if($res['username']==$username && $res['password']==$password){
 ?>
 <script>
-window.location.replace("../index.html");
+window.location.replace("../admin/index.html");
 </script>
 <?php
 }

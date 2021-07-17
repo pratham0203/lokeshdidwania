@@ -97,7 +97,7 @@
             $id = $res['Blog_ID'];
             $title = $res['Blog_Title'];
             $content = $res['Blog_Content'];
-            $image = $res['Book_Image'];
+            $image = $res['Blog_Image'];
             $author = $res['Blog_Author'];
             $date = $res['Date'];
             $visible = $res['Visible'];
@@ -114,7 +114,8 @@
                             <div class="container-main single-main">
                                 <div class="col-md-12">
                                     <div class="block-main mb-30">
-                                        <img src="<?php echo $image; ?>" class="img-responsive" alt="reviews2">
+                                        <img src="<?php echo $image; ?>" class="img-responsive img-fluid"
+                                            alt="reviews2">
                                         <div class="content-main single-post padDiv">
                                             <div class="journal-txt">
                                                 <h4><a href="#"><?php echo $title; ?></a></h4>

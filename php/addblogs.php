@@ -5,6 +5,7 @@ $blog_title = $_POST['bltitle'];
 $blog_content = $_POST['content'];
 $blog_img = $_POST['image'];
 $blog_author = $_POST['author'];
+date_default_timezone_set('Asia/Kolkata');
 $date = date("Y-m-d");
 $isVisible = $_POST['visible'];
 

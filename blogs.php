@@ -97,7 +97,7 @@
                         $id = $res['Blog_ID'];
                         $title = $res['Blog_Title'];
                         $content = $res['Blog_Content'];
-                        $image = $res['Book_Image'];
+                        $image = $res['Blog_Image'];
                         $author = $res['Blog_Author'];
                         $date = $res['Date'];
                         $visible = $res['Visible'];
