@@ -6,10 +6,11 @@ $name = $_POST['name'];
 $email = $_POST['email'];
 $subject = $_POST['subject'];
 $message = $_POST['message'];
+$notify = "Yes";
 
 //SQL Insert Query
-$sql_query = "INSERT INTO contact_message(name, email, subject, message)
-VALUES ('$name', '$email', '$subject', '$message')";
+$sql_query = "INSERT INTO contact_message(name, email, subject, message, notify)
+VALUES ('$name', '$email', '$subject', '$message', $notify)";
 
 $ins = mysqli_query($conn,$sql_query);
 
