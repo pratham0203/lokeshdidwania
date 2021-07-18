@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Blog Edit</title>
+    <title>Admin Panel | Blog Edit</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
