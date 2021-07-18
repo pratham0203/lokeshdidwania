@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin Panel | Books Detail</title>
+    <title>AdminLTE 3 | Blog Add</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -230,7 +230,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/pages/examples/books-detail.php" class="nav-link active">
+                                    <a href="/admin/pages/examples/books-detail.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Books Detail</p>
                                     </a>
@@ -247,7 +247,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/admin/pages/examples/blogs-add.php" class="nav-link">
+                                    <a href="/admin/pages/examples/blogs-add.php" class="nav-link active">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Blogs Add</p>
                                     </a>
@@ -319,12 +319,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Books Detail</h1>
+                            <h1>Blogs Add</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Books Detail</li>
+                                <li class="breadcrumb-item active">Blogs Add</li>
                             </ol>
                         </div>
                     </div>
@@ -333,149 +333,75 @@
 
             <!-- Main content -->
             <section class="content">
-
-                <!-- Default box -->
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Books Detail</h3>
-
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <?php
-
-                    include 'connection.php';
-
-                    $select_query = " select count(Book_ID) from books";
-
-                    $query = mysqli_query($conn, $select_query);
-
-                    while ($res = mysqli_fetch_array($query)) {
-                        $count = $res['count(Book_ID)'];
-                    }
-
-                    $select_query2 = " select count(Book_ID) from books where Visible='Yes'";
-
-                    $query = mysqli_query($conn, $select_query2);
-
-                    while ($res = mysqli_fetch_array($query)) {
-                        $count2 = $res['count(Book_ID)'];
-                    }
-
-
-                    ?>
-
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-12 ">
-                                <div class="row">
-                                    <div class="col-12 col-sm-4">
-                                        <div class="info-box bg-light">
-                                            <div class="info-box-content">
-                                                <span class="info-box-text text-center text-muted">Total No. of
-                                                    Books</span>
-                                                <span class="info-box-number text-center text-muted mb-0">
-                                                    <?php echo $count; ?></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-4">
-                                        <div class="info-box bg-light">
-                                            <div class="info-box-content">
-                                                <span class="info-box-text text-center text-muted">Books on the
-                                                    Website</span>
-                                                <span
-                                                    class="info-box-number text-center text-muted mb-0"><?php echo $count2; ?></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-4">
-                                        <div class="info-box bg-light">
-                                            <div class="info-box-content">
-                                                <span class="info-box-text text-center text-muted">Total Views</span>
-                                                <span class="info-box-number text-center text-muted mb-0">NA</span>
-                                            </div>
-                                        </div>
+                <form role="form" action="php/addblogs.php" method="POST">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">New Blog</h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                            title="Collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <h4>Recent Activity</h4>
-                                        <?php
-
-                                        include 'connection.php';
-
-                                        $select_query = " select * from books
-                                        order by Book_ID desc";
-
-                                        $query = mysqli_query($conn, $select_query);
-
-                                        while ($res = mysqli_fetch_array($query)) {
-                                            $id = $res['Book_ID'];
-                                            $name = $res['Book_Name'];
-                                            $link = $res['Book_Link'];
-                                            $image = $res['Book_Cover'];
-                                            $desc = $res['Book_Description'];
-                                            $price = $res['Price'];
-                                            $visible = $res['Visible'];
-                                        ?>
-
-                                        <div class="post">
-                                            <div class="user-block">
-                                                <img class="img-responsive" src="<?php echo $image; ?>"
-                                                    alt="Book Cover">
-                                                <span class="username">
-                                                    <a href="#"><?php echo $name; ?></a>
-                                                </span>
-                                                <span class="description"><?php echo $price; ?></span>
-                                                <span class="description"><a href="<?php echo $link; ?>">Link:
-                                                        <?php echo $link; ?></a></span>
-                                            </div>
-                                            <!-- /.user-block -->
-                                            <p>
-                                                <?php echo $desc; ?>
-                                            </p>
-
-                                            <p>
-                                                Visible: <?php echo $visible; ?>
-                                            </p>
-                                        </div>
-
-                                        <?php
-
-                                        }
-
-                                        ?>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="inputTitle">Blog Title</label>
+                                        <input type="text" id="inputTitle" class="form-control" name="bltitle">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputContent">Content</label>
+                                        <textarea id="inputContent" class="form-control" rows="4"
+                                            name="content"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputAuthor">Author</label>
+                                        <input type="text" id="inputAuthor" class="form-control" name="author">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputImage">Blog Image</label>
+                                        <input type="text" id="inputImage" class="form-control" name="image">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputVisible">Visibility</label>
+                                        <select id="inputVisible" class="form-control custom-select" name="visible">
+                                            <option selected value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
                                     </div>
                                 </div>
+                                <!-- /.card-body -->
                             </div>
+                            <!-- /.card -->
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="#" class="btn btn-secondary">Cancel</a>
+                            <input type="submit" value="Add Blog" class="btn btn-success float-right" name="submit">
+                        </div>
+                    </div>
+                </form>
             </section>
+            <!-- /.content -->
         </div>
-        <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
+        <!-- /.content-wrapper -->
 
-    <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.1.0
-        </div>
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
-        reserved.
-    </footer>
+        <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+                <b>Version</b> 3.1.0
+            </div>
+            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
+            reserved.
+        </footer>
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
 
