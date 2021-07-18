@@ -5,81 +5,156 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" >
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style type="text/css">
-body {
-  background-color: #eee;
+@import url("https://fonts.googleapis.com/css?family=Comfortaa");
+* {
+  box-sizing: border-box;
 }
 
-body, h1, p {
-  font-family: "Helvetica Neue", "Segoe UI", Segoe, Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-weight: normal;
+body,
+html {
   margin: 0;
   padding: 0;
-  text-align: center;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background-color: #a74006;
+  font-family: sans-serif;
 }
 
 .container {
-  margin-left:  auto;
-  margin-right:  auto;
-  margin-top: 177px;
-  max-width: 1170px;
-  padding-right: 15px;
-  padding-left: 15px;
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 10px;
+  min-width: 300px;
+}
+.container div {
+  display: inline-block;
+}
+.container .lock {
+  opacity: 1;
+}
+.container h1 {
+  font-family: "Comfortaa", cursive;
+  font-size: 100px;
+  text-align: center;
+  color: #eee;
+  font-weight: 100;
+  margin: 0;
+}
+.container p {
+  color: #fff;
 }
 
-.row:before, .row:after {
-  display: table;
-  content: " ";
+.lock {
+  transition: 0.5s ease;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
 }
-
-.col-md-6 {
+.lock.generated {
+  transform: scale(0.5);
+  position: absolute;
+  -webkit-animation: 4s move linear;
+          animation: 4s move linear;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.lock ::after {
+  content: "";
+  background: #a74006;
+  opacity: 0.3;
+  display: block;
+  position: absolute;
+  height: 100%;
   width: 50%;
+  top: 0;
+  left: 0;
+}
+.lock .bottom {
+  background: #D68910;
+  height: 40px;
+  width: 60px;
+  display: block;
+  position: relative;
+  margin: 0 auto;
+}
+.lock .top {
+  height: 60px;
+  width: 50px;
+  border-radius: 50%;
+  border: 10px solid #fff;
+  display: block;
+  position: relative;
+  top: 30px;
+  margin: 0 auto;
+}
+.lock .top::after {
+  padding: 10px;
+  border-radius: 50%;
 }
 
-.col-md-push-3 {
-  margin-left: 25%;
+@-webkit-keyframes move {
+  to {
+    top: 100%;
+  }
 }
 
-h1 {
-  font-size: 48px;
-  font-weight: 300;
-  margin: 0 0 20px 0;
+@keyframes move {
+  to {
+    top: 100%;
+  }
 }
+@media (max-width: 420px) {
+  .container {
+    transform: translate(-50%, -50%) scale(0.8);
+  }
 
-.lead {
-  font-size: 21px;
-  font-weight: 200;
-  margin-bottom: 20px;
-}
-
-p {
-  margin: 0 0 10px;
-}
-
-a {
-  color: #3282e6;
-  text-decoration: none;
+  .lock.generated {
+    transform: scale(0.3);
+  }
 }
 </style>
+<script>
+  const interval = 500;
+
+function generateLocks() {
+  const lock = document.createElement('div'),
+        position = generatePosition();
+  lock.innerHTML = '<a href="index.html"><div class="top"></div><div class="bottom"></div></a>';
+  lock.style.top = position[0];
+  lock.style.left = position[1];
+  lock.classList = 'lock'// generated';
+  document.body.appendChild(lock);
+  setTimeout(()=>{
+    lock.style.opacity = '1';
+    lock.classList.add('generated');
+  },100);
+  setTimeout(()=>{
+    lock.parentElement.removeChild(lock);
+  }, 4000);
+}
+function generatePosition() {
+  const x = Math.round((Math.random() * 100) - 10) + '%';
+  const y = Math.round(Math.random() * 100) + '%';
+  return [x,y];
+}
+setInterval(generateLocks,interval);
+generateLocks();
+</script>
 </head>
 
 <body>
-<div class="container text-center" id="error">
-  <svg height="100" width="100">
-    <polygon points="50,25 17,80 82,80" stroke-linejoin="round" style="fill:none;stroke:#ff8a00;stroke-width:8" />
-    <text x="42" y="74" fill="#ff8a00" font-family="sans-serif" font-weight="900" font-size="42px">!</text>
-  </svg>
- <div class="row">
-    <div class="col-md-12">
-      <div class="main-icon text-warning"><span class="uxicon uxicon-alert"></span></div>
-        <h1>Authorization Required (401 Error)</h1>
-    </div>
+  <div class="container">
+    <h1>4<div class="lock"><div class="top"></div><div class="bottom"></div>
+      </div>1</h1><p>Authorization required</p>
+      <p>Click on any one of the locks to go back to the homepage.</p>
   </div>
-  <div class="row">
-    <div class="col-md-6 col-md-push-3">
-      <p class="lead">This server could not verify that you are authorized to access the document requested. Please try refreshing the page and fill in the correct login details.</p>
-    </div>
-  </div>
-</div>
 
 </body>
 </html>

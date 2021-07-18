@@ -65,13 +65,7 @@
 
         include 'connection.php';
 
-        $select_query = " select Blog_ID from blog_single";
-
-        $query = mysqli_query($conn,$select_query);
-
-        while($res = mysqli_fetch_array($query)){
-            $id = $res['Blog_ID'];
-        }
+        $id = $_GET['id'];
         
         $select_query2 = " select count(Comment_ID) from blog_comments where Blog_ID = '$id'";
 

@@ -70,13 +70,34 @@
         <br>
       </div>
 
+      <?php
+
+      include 'connection.php';
+      
+      $select_query = " select * from books where Visible = 'Yes'";
+      
+      $query = mysqli_query($conn,$select_query);
+      
+      while($res = mysqli_fetch_array($query)){
+
+        $id = $res['Book_Id'];
+        $name = $res['Book_Name'];
+        $link = $res['Book_Link'];
+        $image = $res['Book_Cover'];
+        $desc = $res['Book_Description'];
+        $price = $res['Price'];
+        $visible = $res['Visible'];
+        
+      ?>
+
+
       <div class="container">
         <div class="row">      
         <div class="row portfolio-container">
           <div class="col-lg-4 col-md-6 portfolio-item filter-app" style="text-align: center;">
           <a href="http://amazon.com/dp/B097TKT8FD"><img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="" width="250"></a>
             <div class="portfolio-info">
-              <h4>THE WONDERS OF BREATH</h4>
+              <h4>WONDERS OF BREATH</h4>
               <a href="http://amazon.com/dp/B097TKT8FD"><p style="color: black; font-weight: 600;">Click here to buy now</p></a>
               <a href="http://amazon.com/dp/B097TKT8FD" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
             </div>
@@ -84,9 +105,15 @@
           </div>
           <div class="col-lg-7 col-md-2 portfolio-item filter-app" style="padding: 20px;">
           <h1 style="color: rgb(170, 117, 36);">The Wonders of Breath</h1>
-          <p style="color: rgb(29, 26, 26); font-weight: 200; font-size: larger;">Did you ever know that your body has a secret mechanism that can make your life amazingly wonderful? Yes, the mechanism is your breath, but you always took it for granted. The moment you become aware about your breath and regulate it a bit, fantastic benefits start knocking on your door. Controlled breathing blesses you with longevity, wellness, mindfulness, awareness, concentration, youthfulness, happiness, anti-aging, and spirituality. It even causes weight loss and helps in anger and stress</p>
+          <p style="color: rgb(29, 26, 26); font-weight: 200; font-size: larger;">Did you ever know that your body has a secret mechanism that can make your life amazingly wonderful? Yes, the mechanism is your breath, but you always took it for granted. The moment you become aware about your breath and regulate it a bit, fantastic benefits start knocking on your door. Controlled breathing blesses you with longevity, wellness, mindfulness, awareness, concentration, youthfulness, happiness, anti-aging, and spirituality. It even causes weight loss and helps in anger and stress.</p>
             </div>
         </div>
+
+        <?php
+
+      }
+      
+      ?>
       
       </div>
 

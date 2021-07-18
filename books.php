@@ -12,6 +12,8 @@
     <!-- Favicons -->
     <link href="assets/img/image.png" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="assets/img/1.png" rel="1-icon">
+
 
     <!-- Google Fonts -->
     <link
@@ -60,67 +62,64 @@
         </div>
     </header><!-- End Header -->
 
-    <!-- ======= Blog Grid ======= -->
-    <div id="journal-blog" class="text-left  paddsections">
+    <!-- ======= Hero Section ======= -->
 
-        <div class="container">
-            <div class="section-title text-center">
-                <h2>journal</h2>
-            </div>
+
+    <main id="main">
+        <div class="nine">
+            <h1 style="text-align: center;">New Arrivals</h1>
+            <br>
         </div>
 
-        <div class="container">
-            <div class="journal-block">
+        <?php
+
+include 'connection.php';
+
+$select_query = " select * from books where Visible = 'Yes'";
+
+$query = mysqli_query($conn, $select_query);
+
+while ($res = mysqli_fetch_array($query)) {
+    $id = $res['Book_ID'];
+    $name = $res['Book_Name'];
+    $link = $res['Book_Link'];
+    $image = $res['Book_Cover'];
+    $desc = $res['Book_Description'];
+    $price = $res['Price'];
+    $visible = $res['Visible'];
+?>
+        <div id="portfolio" class="paddsection">
+            <div class="container">
                 <div class="row">
-
-                    <?php
-
-                        include 'connection.php';
-
-                        $select_query = " select * from blogs where Visible = 'Yes'";
-
-                        $query = mysqli_query($conn,$select_query);
-                        
-                        while($res = mysqli_fetch_array($query)){
-                        $id = $res['Blog_ID'];
-                        $title = $res['Blog_Title'];
-                        $content = $res['Blog_Content'];
-                        $image = $res['Blog_Image'];
-                        $author = $res['Blog_Author'];
-                        $date = $res['Date'];
-                        $visible = $res['Visible'];
-                        
-                        ?>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="journal-info mb-30">
-
-                            <a href="blog-single.php?id=<?php echo $id; ?>"><img src="<?php echo $image; ?>"
-                                    class="img-responsive" alt="img" /></a>
-
-                            <div class="journal-txt">
-
-                                <h4><a href="blog-single.php?id=<?php echo $id; ?>"><?php echo $title; ?></a>
-                                </h4>
-                                <p class="separator"><?php echo substr($content, 0, 200); ?>
-                                </p>
-
+                    <div class="row portfolio-container">
+                        <div class="col-lg-4 col-md-6 portfolio-item filter-app" style="text-align: center;">
+                            <a href="<?php echo $link; ?>"><img src="<?php echo $image; ?>" class="img-fluid" alt=""
+                                    width="250"></a>
+                            <div class="portfolio-info">
+                                <h4><?php echo strtoupper($name); ?></h4>
+                                <a href="<?php echo $link; ?>">
+                                    <p style="color: black; font-weight: 600;">Click here to buy now</p>
+                                </a>
+                                <a href="<?php echo $link; ?>" class="details-link" title="More Details"><i
+                                        class="bx bx-link"></i></a>
                             </div>
-
+                            <h3 style="text-align: center;"><?php echo $price; ?></h3>
+                        </div>
+                        <div class="col-lg-7 col-md-2 portfolio-item filter-app" style="padding: 20px;">
+                            <h1 style="color: rgb(170, 117, 36);"><?php echo $name; ?></h1>
+                            <p style="color: rgb(29, 26, 26); font-weight: 200; font-size: larger;"><?php echo $desc; ?>
+                            </p>
                         </div>
                     </div>
-
-                    <?php
-
-                    }
-                    
-                    ?>
-
                 </div>
-            </div>
+            </div><!-- End Portfolio Section -->
         </div>
-    </div><!-- End Blog Grid -->
+        <?php
 
+                }
+
+                    ?>
+    </main>
 
     <!-- ======= Footer ======= -->
     <div id="footer" class="text-center">
@@ -157,7 +156,6 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/time.js"></script>
 
 </body>
 
