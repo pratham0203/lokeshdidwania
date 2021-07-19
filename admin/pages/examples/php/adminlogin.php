@@ -19,7 +19,7 @@ if($res!=NULL)
 if($res['username']==$username && $res['password']==$password){
 ?>
 <script>
-window.location.replace("../admin/index.html");
+window.location.replace("../../../index.php");
 </script>
 <?php
 }
@@ -28,7 +28,7 @@ else
 ?>
 <script>
 alert("Incorrect username or password");
-window.location.replace("../admin.html");
+window.location.replace("../login.html");
 </script>
 <?php
 }
@@ -38,7 +38,7 @@ else
 ?>
 <script>
 alert("Username does not exist");
-window.location.replace("../admin.html");
+window.location.replace("../login.html");
 </script>
 <?php
 }
