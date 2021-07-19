@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin Panel | Book Edit</title>
+    <title>Admin | Book Edit</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -176,9 +176,10 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="../../index3.html" class="brand-link">
-            <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-" style="opacity:1; max-height: 50px;">
-               <span class="brand-text font-weight-light" style="visibility: hidden;">Admin Panel</span>
+            <a href="../../index.php" class="brand-link">
+                <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-"
+                    style="opacity:1; max-height: 45px;">
+                <span class="brand-text font-weight-light" style="visibility: hidden;">Admin Panel</span>
             </a>
 
             <!-- Sidebar -->
@@ -264,7 +265,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/pages/examples/blogs-edit.php" class="nav-link">
+                                    <a href="/admin/pages/examples/blogs-edit.php" class="nav-link disabled">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Blogs Edit</p>
                                     </a>
@@ -293,7 +294,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/pages/examples/blogs-edit.php" class="nav-link">
+                                    <a href="/admin/pages/examples/blogs-edit.php" class="nav-link disabled">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Podcast Edit</p>
                                     </a>
@@ -344,7 +345,59 @@
 
             <!-- Main content -->
             <section class="content">
-                <form role="form" action="" method="POST">
+                <?php 
+                include 'connection.php';
+
+                $id = $_GET['id'];
+                
+                $ip = "";
+
+                        if (!empty($_SERVER["HTTP_CLIENT_IP"]))
+                        {
+                            // Check for IP address from shared Internet
+                            $ip = $_SERVER["HTTP_CLIENT_IP"];
+                        }
+                        elseif (!empty($_SERVER["HTTP_X_FORWARDED_FOR"]))
+                        {
+                            // Check for the proxy user
+                            $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+                        }
+                        else
+                        {
+                            $ip = $_SERVER["REMOTE_ADDR"];
+                        }
+                    
+                    $select_query = "select Ip_Address from admin_login where Ip_Address = '$ip'";
+
+                    $query = mysqli_query($conn, $select_query);
+
+                    while ($res = mysqli_fetch_array($query)) {
+                        $ipaddress = $res['Ip_Address'];
+                    }
+
+                    if ($ip !== $ipaddress){
+                      ?>
+                <script>
+                window.location.replace("/index.html");
+                </script>
+                <?php 
+                    }
+
+                $select_query = " select * from books
+                where Book_ID = '$id'";
+
+                $query = mysqli_query($conn, $select_query);
+
+                while ($res = mysqli_fetch_array($query)) {
+                                            $bkid = $res['Book_ID'];
+                                            $name = $res['Book_Name'];
+                                            $link = $res['Book_Link'];
+                                            $image = $res['Book_Cover'];
+                                            $desc = $res['Book_Description'];
+                                            $price = $res['Price'];
+                                            $visible = $res['Visible'];
+                ?>
+                <form role="form" action="php/updatebooks.php?id=<?php echo $bkid; ?>" method="POST">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card card-primary">
@@ -359,25 +412,34 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
+                                        <label for="inputID">Blog ID</label>
+                                        <input type="type" value="<?php echo $bkid; ?>" id="inputID"
+                                            class="form-control" name="bkid" disabled>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="inputName">Book Name</label>
-                                        <input type="text" id="inputName" class="form-control" name="bkname">
+                                        <input type="text" value="<?php echo $name; ?>" id="inputName"
+                                            class="form-control" name="bkname" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputDescription">Book Description</label>
-                                        <textarea id="inputDescription" class="form-control" rows="4"
-                                            name="desc"></textarea>
+                                        <textarea id="inputDescription" class="form-control" rows="4" name="desc"
+                                            required><?php echo $desc; ?></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputPrice">Book Price</label>
-                                        <input type="text" id="inputprice" class="form-control" name="price">
+                                        <input type="text" value="<?php echo $price; ?>" id="inputprice"
+                                            class="form-control" name="price" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputLink">Amazon/Flipkart Link</label>
-                                        <input type="text" id="inputLink" class="form-control" name="bklink">
+                                        <input type="text" value="<?php echo $link; ?>" id="inputLink"
+                                            class="form-control" name="bklink" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputCover">Book Cover</label>
-                                        <input type="text" id="inputCover" class="form-control" name="cover">
+                                        <input type="text" value="<?php echo $image; ?>" id="inputCover"
+                                            class="form-control" name="cover" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputVisible">Visibility</label>
@@ -395,16 +457,22 @@
                     <div class="row">
                         <div class="col-12">
                             <a href="#" class="btn btn-secondary">Cancel</a>
+                            <a href="php/deletebook.php?id=<?php echo $bkid; ?>" class=" btn btn-danger float-right"
+                                name="delete">Delete
+                                Book</a>
                             <input type="submit" value="Update Book" class="btn btn-success float-right" name="submit">
                         </div>
                     </div>
                 </form>
+                <?php 
+                }
+                ?>
             </section>
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
 
-        <footer class="main-footer">
+        <footer class=" main-footer">
             <div class="float-right d-none d-sm-block">
                 <b>Version</b> 3.1.0
             </div>

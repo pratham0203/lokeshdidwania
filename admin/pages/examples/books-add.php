@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Book Add</title>
+    <title>Admin | Book Add</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -61,6 +61,39 @@
                 <!-- Messages Dropdown Menu -->
                 <?php 
                     include 'connection.php';
+
+                    $ip = "";
+
+                        if (!empty($_SERVER["HTTP_CLIENT_IP"]))
+                        {
+                            // Check for IP address from shared Internet
+                            $ip = $_SERVER["HTTP_CLIENT_IP"];
+                        }
+                        elseif (!empty($_SERVER["HTTP_X_FORWARDED_FOR"]))
+                        {
+                            // Check for the proxy user
+                            $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+                        }
+                        else
+                        {
+                            $ip = $_SERVER["REMOTE_ADDR"];
+                        }
+                    
+                    $select_query = "select Ip_Address from admin_login where Ip_Address = '$ip'";
+
+                    $query = mysqli_query($conn, $select_query);
+
+                    while ($res = mysqli_fetch_array($query)) {
+                        $ipaddress = $res['Ip_Address'];
+                    }
+
+                    if ($ip !== $ipaddress){
+                      ?>
+                <script>
+                window.location.replace("/index.html");
+                </script>
+                <?php 
+                    }
 
                     $select_query = "select count(message_id) from contact_message where notify = 'Yes'";
 
@@ -176,9 +209,10 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="../../index3.html" class="brand-link">
-            <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-" style="opacity:1; max-height: 50px;">
-               <span class="brand-text font-weight-light" style="visibility: hidden;">Admin Panel</span>
+            <a href="../../index.php" class="brand-link">
+                <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-"
+                    style="opacity:1; max-height: 45px;">
+                <span class="brand-text font-weight-light" style="visibility: hidden;">Admin Panel</span>
             </a>
 
             <!-- Sidebar -->
@@ -235,7 +269,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/pages/examples/books-edit.php" class="nav-link">
+                                    <a href="/admin/pages/examples/books-edit.php" class="nav-link disabled">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Books Edit</p>
                                     </a>
@@ -264,7 +298,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/pages/examples/blogs-edit.php" class="nav-link">
+                                    <a href="/admin/pages/examples/blogs-edit.php" class="nav-link disabled">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Blogs Edit</p>
                                     </a>
@@ -293,7 +327,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/pages/examples/blogs-edit.php" class="nav-link">
+                                    <a href="/admin/pages/examples/blogs-edit.php" class="nav-link disabled">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Podcast Edit</p>
                                     </a>
@@ -360,24 +394,24 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="inputName">Book Name</label>
-                                        <input type="text" id="inputName" class="form-control" name="bkname">
+                                        <input type="text" id="inputName" class="form-control" name="bkname" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputDescription">Book Description</label>
-                                        <textarea id="inputDescription" class="form-control" rows="4"
-                                            name="desc"></textarea>
+                                        <textarea id="inputDescription" class="form-control" rows="4" name="desc"
+                                            required></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputPrice">Book Price</label>
-                                        <input type="text" id="inputprice" class="form-control" name="price">
+                                        <input type="text" id="inputprice" class="form-control" name="price" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputLink">Amazon/Flipkart Link</label>
-                                        <input type="text" id="inputLink" class="form-control" name="bklink">
+                                        <input type="text" id="inputLink" class="form-control" name="bklink" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputCover">Book Cover</label>
-                                        <input type="text" id="inputCover" class="form-control" name="cover">
+                                        <input type="text" id="inputCover" class="form-control" name="cover" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputVisible">Visibility</label>

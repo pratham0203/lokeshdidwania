@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Blog Add</title>
+    <title>Admin | Blog Add</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -61,6 +61,39 @@
                 <!-- Messages Dropdown Menu -->
                 <?php 
                     include 'connection.php';
+
+                    $ip = "";
+
+                        if (!empty($_SERVER["HTTP_CLIENT_IP"]))
+                        {
+                            // Check for IP address from shared Internet
+                            $ip = $_SERVER["HTTP_CLIENT_IP"];
+                        }
+                        elseif (!empty($_SERVER["HTTP_X_FORWARDED_FOR"]))
+                        {
+                            // Check for the proxy user
+                            $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+                        }
+                        else
+                        {
+                            $ip = $_SERVER["REMOTE_ADDR"];
+                        }
+                    
+                    $select_query = "select Ip_Address from admin_login where Ip_Address = '$ip'";
+
+                    $query = mysqli_query($conn, $select_query);
+
+                    while ($res = mysqli_fetch_array($query)) {
+                        $ipaddress = $res['Ip_Address'];
+                    }
+
+                    if ($ip !== $ipaddress){
+                      ?>
+                <script>
+                window.location.replace("/index.html");
+                </script>
+                <?php 
+                    }
 
                     $select_query = "select count(message_id) from contact_message where notify = 'Yes'";
 
@@ -176,10 +209,10 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="../../index.html" class="brand-link">
-                <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
-                    class="brand-image img-circle elevation-3" style="opacity: .8">
-               <span class="brand-text font-weight-light" style="visibility: hidden;">Admin Panel</span>
+            <a href="../../index.php" class="brand-link">
+                <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation"
+                    style="opacity:1; max-height: 45px;">
+                <span class="brand-text font-weight-light" style="visibility: hidden;">Admin Panel</span>
             </a>
 
             <!-- Sidebar -->
@@ -236,7 +269,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/pages/examples/books-edit.php" class="nav-link">
+                                    <a href="/admin/pages/examples/books-edit.php" class="nav-link disabled">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Books Edit</p>
                                     </a>
@@ -265,7 +298,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/pages/examples/blogs-edit.php" class="nav-link">
+                                    <a href="/admin/pages/examples/blogs-edit.php" class="nav-link disabled">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Blogs Edit</p>
                                     </a>
@@ -294,7 +327,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/pages/examples/blogs-edit.php" class="nav-link">
+                                    <a href="/admin/pages/examples/blogs-edit.php" class="nav-link disabled">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Podcast Edit</p>
                                     </a>
@@ -361,20 +394,20 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="inputTitle">Blog Title</label>
-                                        <input type="text" id="inputTitle" class="form-control" name="bltitle">
+                                        <input type="text" id="inputTitle" class="form-control" name="bltitle" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputContent">Content</label>
-                                        <textarea id="inputContent" class="form-control" rows="4"
-                                            name="content"></textarea>
+                                        <textarea id="inputContent" class="form-control" rows="4" name="content"
+                                            required></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputAuthor">Author</label>
-                                        <input type="text" id="inputAuthor" class="form-control" name="author">
+                                        <input type="text" id="inputAuthor" class="form-control" name="author" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputImage">Blog Image</label>
-                                        <input type="text" id="inputImage" class="form-control" name="image">
+                                        <input type="text" id="inputImage" class="form-control" name="image" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputVisible">Visibility</label>

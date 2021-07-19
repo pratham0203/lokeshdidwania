@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin Panel | Books Detail</title>
+    <title>Admin | Books Detail</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -61,6 +61,39 @@
                 <!-- Messages Dropdown Menu -->
                 <?php 
                     include 'connection.php';
+
+                    $ip = "";
+
+                        if (!empty($_SERVER["HTTP_CLIENT_IP"]))
+                        {
+                            // Check for IP address from shared Internet
+                            $ip = $_SERVER["HTTP_CLIENT_IP"];
+                        }
+                        elseif (!empty($_SERVER["HTTP_X_FORWARDED_FOR"]))
+                        {
+                            // Check for the proxy user
+                            $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+                        }
+                        else
+                        {
+                            $ip = $_SERVER["REMOTE_ADDR"];
+                        }
+                    
+                    $select_query = "select Ip_Address from admin_login where Ip_Address = '$ip'";
+
+                    $query = mysqli_query($conn, $select_query);
+
+                    while ($res = mysqli_fetch_array($query)) {
+                        $ipaddress = $res['Ip_Address'];
+                    }
+
+                    if ($ip !== $ipaddress){
+                      ?>
+                <script>
+                window.location.replace("/index.html");
+                </script>
+                <?php 
+                    }
 
                     $select_query = "select count(message_id) from contact_message where notify = 'Yes'";
 
@@ -176,9 +209,10 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="../../index3.html" class="brand-link">
-            <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-" style="opacity:1; max-height: 50px;">
-               <span class="brand-text font-weight-light" style="visibility: hidden;">Admin Panel</span>
+            <a href="../../index.php" class="brand-link">
+                <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-"
+                    style="opacity:1; max-height: 45px;">
+                <span class="brand-text font-weight-light" style="visibility: hidden;">Admin Panel</span>
             </a>
 
             <!-- Sidebar -->
@@ -235,7 +269,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/pages/examples/books-edit.php" class="nav-link">
+                                    <a href="/admin/pages/examples/books-edit.php" class="nav-link disabled">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Books Edit</p>
                                     </a>
@@ -264,7 +298,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/pages/examples/blogs-edit.php" class="nav-link">
+                                    <a href="/admin/pages/examples/blogs-edit.php" class="nav-link disabled">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Blogs Edit</p>
                                     </a>
@@ -293,7 +327,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/pages/examples/blogs-edit.php" class="nav-link">
+                                    <a href="/admin/pages/examples/blogs-edit.php" class="nav-link disabled">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Podcast Edit</p>
                                     </a>
@@ -455,6 +489,11 @@
 
                                             <p>
                                                 Visible: <?php echo $visible; ?>
+                                            </p>
+
+                                            <p>
+                                                <a href="books-edit.php?id=<?php echo $id; ?>">Edit <i
+                                                        class="fas fa-edit"></i></a>
                                             </p>
                                         </div>
 

@@ -9,11 +9,7 @@ date_default_timezone_set('Asia/Kolkata');
 $date = date("Y-m-d");
 $isVisible = $_POST['visible'];
 
-$select_query = "SELECT count(Blog_ID) from blogs"; 
 
-$query = mysqli_query($conn, $select_query);
-
-$check = mysqli_fetch_array($query);
 
 
 

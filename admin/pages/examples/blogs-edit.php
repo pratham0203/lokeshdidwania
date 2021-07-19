@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin Panel | Blog Edit</title>
+    <title>Admin | Blog Edit</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -176,9 +176,10 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="../../index3.html" class="brand-link">
-            <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-" style="opacity:1; max-height: 50px;">
-               <span class="brand-text font-weight-light" style="visibility: hidden;">Admin Panel</span>
+            <a href="../../index.php" class="brand-link">
+                <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-"
+                    style="opacity:1; max-height: 45px;">
+                <span class="brand-text font-weight-light" style="visibility: hidden;">Admin Panel</span>
             </a>
 
             <!-- Sidebar -->
@@ -235,7 +236,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/pages/examples/books-edit.php" class="nav-link">
+                                    <a href="/admin/pages/examples/books-edit.php" class="nav-link disabled">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Books Edit</p>
                                     </a>
@@ -293,7 +294,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/pages/examples/blogs-edit.php" class="nav-link">
+                                    <a href="/admin/pages/examples/blogs-edit.php" class="nav-link disabled">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Podcast Edit</p>
                                     </a>
@@ -344,7 +345,61 @@
 
             <!-- Main content -->
             <section class="content">
-                <form role="form" action="" method="POST">
+                <?php 
+                include 'connection.php';
+
+                $id = $_GET['id'];
+                
+                $ip = "";
+
+                        if (!empty($_SERVER["HTTP_CLIENT_IP"]))
+                        {
+                            // Check for IP address from shared Internet
+                            $ip = $_SERVER["HTTP_CLIENT_IP"];
+                        }
+                        elseif (!empty($_SERVER["HTTP_X_FORWARDED_FOR"]))
+                        {
+                            // Check for the proxy user
+                            $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+                        }
+                        else
+                        {
+                            $ip = $_SERVER["REMOTE_ADDR"];
+                        }
+                    
+                    $select_query = "select Ip_Address from admin_login where Ip_Address = '$ip'";
+
+                    $query = mysqli_query($conn, $select_query);
+
+                    while ($res = mysqli_fetch_array($query)) {
+                        $ipaddress = $res['Ip_Address'];
+                    }
+
+                    if ($ip !== $ipaddress){
+                      ?>
+                <script>
+                window.location.replace("/index.html");
+                </script>
+                <?php 
+                    }
+
+                $select_query = "select * from blogs
+                where Blog_ID = '$id'";
+                
+                $query = mysqli_query($conn, $select_query);
+
+                while ($res = mysqli_fetch_array($query)) {
+                    $blid = $res['Blog_ID'];
+                    $title = $res['Blog_Title'];
+                    $content = $res['Blog_Content'];
+                    $image = $res['Blog_Image'];
+                    $author = $res['Blog_Author'];
+                    $date = $res['Date'];
+                    $visible = $res['Visible'];
+
+
+                ?>
+                <form role="form" action="php/updateblogs.php?id=<?php echo $blid; ?>" method="POST">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card card-primary">
@@ -359,21 +414,29 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
+                                        <label for="inputID">Blog ID</label>
+                                        <input type="type" value="<?php echo $blid; ?>" id="inputID"
+                                            class="form-control" name="blid" disabled>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="inputTitle">Blog Title</label>
-                                        <input type="text" id="inputTitle" class="form-control" name="bltitle">
+                                        <input type="text" value="<?php echo $title; ?>" id="inputTitle"
+                                            class="form-control" name="bltitle" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputContent">Content</label>
-                                        <textarea id="inputContent" class="form-control" rows="4"
-                                            name="content"></textarea>
+                                        <textarea id="inputContent" class="form-control" rows="4" name="content"
+                                            required><?php echo $content; ?></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputAuthor">Author</label>
-                                        <input type="text" id="inputAuthor" class="form-control" name="author">
+                                        <input type="text" value="<?php echo $author; ?>" id="inputAuthor"
+                                            class="form-control" name="author" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputImage">Blog Image</label>
-                                        <input type="text" id="inputImage" class="form-control" name="image">
+                                        <input type="text" id="inputImage" value="<?php echo $image; ?>"
+                                            class="form-control" name="image" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputVisible">Visibility</label>
@@ -392,10 +455,16 @@
                     <div class="row">
                         <div class="col-12">
                             <a href="#" class="btn btn-secondary">Cancel</a>
+                            <a href="php/deleteblog.php?id=<?php echo $blid; ?>" class=" btn btn-danger float-right"
+                                name="delete">Delete
+                                Blog</a>
                             <input type="submit" value="Update Blog" class="btn btn-success float-right" name="submit">
                         </div>
                     </div>
                 </form>
+                <?php 
+                }
+                ?>
             </section>
             <!-- /.content -->
         </div>

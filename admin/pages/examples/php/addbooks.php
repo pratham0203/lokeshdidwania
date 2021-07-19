@@ -8,11 +8,7 @@ $book_desc = $_POST['desc'];
 $price = $_POST['price'];
 $isVisible = $_POST['visible'];
 
-$select_query = "SELECT count(Book_ID) from books"; 
 
-$query = mysqli_query($conn, $select_query);
-
-$check = mysqli_fetch_array($query);
 
 
 $sql_query = "INSERT INTO books(Book_Name, Book_Link, Book_Cover, Book_Description, Price, Visible)
