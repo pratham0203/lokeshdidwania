@@ -95,6 +95,14 @@
                 <?php 
                     }
 
+                    $select_query = "select count(Comment_ID) from blog_comments where notify = 'Yes'";
+
+                    $query = mysqli_query($conn, $select_query);
+
+                    while ($res = mysqli_fetch_array($query)) {
+                        $count2 = $res['count(Comment_ID)'];
+                    }
+
                     $select_query = "select count(message_id) from contact_message where notify = 'Yes'";
 
                     $query = mysqli_query($conn, $select_query);
@@ -111,7 +119,6 @@
 
                     <?php
                         }
-                    
                     ?>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <!-- Message Start -->
@@ -149,18 +156,9 @@
                         <div class="dropdown-divider"></div>
                         <?php
                         }
-
-                        /* function updateNotifications($con) {
-                            $update_query = "update contact_message
-                            set notify = 'No'
-                            where notify = 'Yes'";
-                        
-                            $update = mysqli_query($con,$update_query);
-                        } */
                         
                         ?>
-                        <a href="#" onclick="<?php // updateNotifications($conn); ?>"
-                            class="dropdown-item dropdown-footer">See
+                        <a href="/admin/pages/examples/contacts.php" class="dropdown-item dropdown-footer">See
                             All
                             Messages</a>
                     </div>
@@ -169,26 +167,22 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge">15</span>
+                        <span class="badge badge-warning navbar-badge"><?php echo $count + $count2; ?></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-item dropdown-header">15 Notifications</span>
+
+                        <span class="dropdown-item dropdown-header"><?php echo $count + $count2; ?>
+                            Notifications</span>
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item">
-                            <i class="fas fa-envelope mr-2"></i> 4 new messages
-                            <span class="float-right text-muted text-sm">3 mins</span>
+                            <i class="fas fa-envelope mr-2"></i> <?php echo $count; ?> New Messages
                         </a>
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item">
-                            <i class="fas fa-users mr-2"></i> 8 friend requests
-                            <span class="float-right text-muted text-sm">12 hours</span>
+                            <i class="fas fa-users mr-2"></i> <?php echo $count2; ?> New Comments
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-file mr-2"></i> 3 new reports
-                            <span class="float-right text-muted text-sm">2 days</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
+
                         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                     </div>
                 </li>
@@ -269,12 +263,6 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/pages/examples/books-edit.php" class="nav-link disabled">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Books Edit</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
                                     <a href="/admin/pages/examples/books-detail.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Books Detail</p>
@@ -298,12 +286,6 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/pages/examples/blogs-edit.php" class="nav-link disabled">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Blogs Edit</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
                                     <a href="/admin/pages/examples/blogs-detail.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Blogs Detail</p>
@@ -324,12 +306,6 @@
                                     <a href="/admin/pages/examples/blogs-add.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Podcast Add</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/admin/pages/examples/blogs-edit.php" class="nav-link disabled">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Podcast Edit</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -410,7 +386,7 @@
                                         <input type="text" id="inputImage" class="form-control" name="image" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputCover">Book Cover Upload</label><br/>
+                                        <label for="inputCover">Book Cover Upload</label><br />
                                         <input type="file" id="inputCover" name="cover" required>
                                     </div>
                                     <div class="form-group">

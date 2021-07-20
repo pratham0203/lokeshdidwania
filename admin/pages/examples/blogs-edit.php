@@ -62,6 +62,47 @@
                 <?php 
                     include 'connection.php';
 
+                    $ip = "";
+
+                        if (!empty($_SERVER["HTTP_CLIENT_IP"]))
+                        {
+                            // Check for IP address from shared Internet
+                            $ip = $_SERVER["HTTP_CLIENT_IP"];
+                        }
+                        elseif (!empty($_SERVER["HTTP_X_FORWARDED_FOR"]))
+                        {
+                            // Check for the proxy user
+                            $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+                        }
+                        else
+                        {
+                            $ip = $_SERVER["REMOTE_ADDR"];
+                        }
+                    
+                    $select_query = "select Ip_Address from admin_login where Ip_Address = '$ip'";
+
+                    $query = mysqli_query($conn, $select_query);
+
+                    while ($res = mysqli_fetch_array($query)) {
+                        $ipaddress = $res['Ip_Address'];
+                    }
+
+                    if ($ip !== $ipaddress){
+                      ?>
+                <script>
+                window.location.replace("/index.html");
+                </script>
+                <?php 
+                    }
+
+                    $select_query = "select count(Comment_ID) from blog_comments where notify = 'Yes'";
+
+                    $query = mysqli_query($conn, $select_query);
+
+                    while ($res = mysqli_fetch_array($query)) {
+                        $count2 = $res['count(Comment_ID)'];
+                    }
+                    
                     $select_query = "select count(message_id) from contact_message where notify = 'Yes'";
 
                     $query = mysqli_query($conn, $select_query);
@@ -116,18 +157,9 @@
                         <div class="dropdown-divider"></div>
                         <?php
                         }
-
-                        /* function updateNotifications($con) {
-                            $update_query = "update contact_message
-                            set notify = 'No'
-                            where notify = 'Yes'";
-                        
-                            $update = mysqli_query($con,$update_query);
-                        } */
                         
                         ?>
-                        <a href="#" onclick="<?php // updateNotifications($conn); ?>"
-                            class="dropdown-item dropdown-footer">See
+                        <a href="/admin/pages/examples/contacts.php" class="dropdown-item dropdown-footer">See
                             All
                             Messages</a>
                     </div>
@@ -136,26 +168,22 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge">15</span>
+                        <span class="badge badge-warning navbar-badge"><?php echo $count + $count2; ?></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-item dropdown-header">15 Notifications</span>
+
+                        <span class="dropdown-item dropdown-header"><?php echo $count + $count2; ?>
+                            Notifications</span>
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item">
-                            <i class="fas fa-envelope mr-2"></i> 4 new messages
-                            <span class="float-right text-muted text-sm">3 mins</span>
+                            <i class="fas fa-envelope mr-2"></i> <?php echo $count; ?> New Messages
                         </a>
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item">
-                            <i class="fas fa-users mr-2"></i> 8 friend requests
-                            <span class="float-right text-muted text-sm">12 hours</span>
+                            <i class="fas fa-users mr-2"></i> <?php echo $count2; ?> New Comments
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-file mr-2"></i> 3 new reports
-                            <span class="float-right text-muted text-sm">2 days</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
+
                         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                     </div>
                 </li>
@@ -236,12 +264,6 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/pages/examples/books-edit.php" class="nav-link disabled">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Books Edit</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
                                     <a href="/admin/pages/examples/books-detail.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Books Detail</p>
@@ -291,12 +313,6 @@
                                     <a href="/admin/pages/examples/blogs-add.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Podcast Add</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/admin/pages/examples/blogs-edit.php" class="nav-link disabled">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Podcast Edit</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -455,8 +471,10 @@
                     <div class="row">
                         <div class="col-12">
                             <a href="#" class="btn btn-secondary">Cancel</a>
-                            <a href="php/deleteblog.php?id=<?php echo $blid; ?>" class=" btn btn-danger float-right" name="delete">Delete Blog</a>
-                            <input type="submit" value="Update Blog" class="btn btn-success float-right" name="submit" style="margin-right:16px;">
+                            <a href="php/deleteblog.php?id=<?php echo $blid; ?>" class=" btn btn-danger float-right"
+                                name="delete">Delete Blog</a>
+                            <input type="submit" value="Update Blog" class="btn btn-success float-right" name="submit"
+                                style="margin-right:16px;">
                         </div>
                     </div>
                 </form>
