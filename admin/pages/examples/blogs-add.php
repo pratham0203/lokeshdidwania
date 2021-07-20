@@ -410,6 +410,10 @@
                                         <input type="text" id="inputImage" class="form-control" name="image" required>
                                     </div>
                                     <div class="form-group">
+                                        <label for="inputCover">Book Cover Upload</label><br/>
+                                        <input type="file" id="inputCover" name="cover" required>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="inputVisible">Visibility</label>
                                         <select id="inputVisible" class="form-control custom-select" name="visible">
                                             <option selected value="Yes">Yes</option>

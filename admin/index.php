@@ -614,12 +614,12 @@
                                         <p>Books Add</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">
                                     <a href="pages/examples/books-edit.php" class="nav-link disabled">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Books Edit</p>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li class="nav-item">
                                     <a href="pages/examples/books-detail.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
@@ -661,12 +661,12 @@
                                         <p>Blogs Add</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">
                                     <a href="pages/examples/blogs-edit.php" class="nav-link disabled">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Blogs Edit</p>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li class="nav-item">
                                     <a href="pages/examples/blogs-detail.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
@@ -709,12 +709,12 @@
                                         <p>Podcast Add</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">
                                     <a href="pages/examples/blogs-edit.php" class="nav-link disabled">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Podcast Edit</p>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li class="nav-item">
                                     <a href="pages/examples/blogs-detail.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>

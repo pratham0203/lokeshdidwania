@@ -455,10 +455,8 @@
                     <div class="row">
                         <div class="col-12">
                             <a href="#" class="btn btn-secondary">Cancel</a>
-                            <a href="php/deleteblog.php?id=<?php echo $blid; ?>" class=" btn btn-danger float-right"
-                                name="delete">Delete
-                                Blog</a>
-                            <input type="submit" value="Update Blog" class="btn btn-success float-right" name="submit">
+                            <a href="php/deleteblog.php?id=<?php echo $blid; ?>" class=" btn btn-danger float-right" name="delete">Delete Blog</a>
+                            <input type="submit" value="Update Blog" class="btn btn-success float-right" name="submit" style="margin-right:16px;">
                         </div>
                     </div>
                 </form>

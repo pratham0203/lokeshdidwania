@@ -460,7 +460,7 @@
                             <a href="php/deletebook.php?id=<?php echo $bkid; ?>" class=" btn btn-danger float-right"
                                 name="delete">Delete
                                 Book</a>
-                            <input type="submit" value="Update Book" class="btn btn-success float-right" name="submit">
+                            <input type="submit" value="Update Book" class="btn btn-success float-right" name="submit" style="margin-right:16px;">
                         </div>
                     </div>
                 </form>
