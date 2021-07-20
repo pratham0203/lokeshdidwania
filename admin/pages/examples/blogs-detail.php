@@ -26,7 +26,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="../../index3.html" class="nav-link">Home</a>
+                    <a href="#" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
@@ -526,6 +526,10 @@
                                                             title="Email ID: <?php echo $email; ?>"><?php echo $name; ?></span>
                                                         <span><a href="#"><?php echo $date; ?> at
                                                                 <?php echo $time; ?></a></span>
+                                                        <span class="float-right">
+                                                            <a href="php/deletecomment.php?id=<?php echo $cid; ?>">
+                                                                <i class="fas fa-trash"></i></a>
+                                                        </span>
                                                         <p class="mb-10"><?php echo $comment; ?> </p>
                                                         <!-- <a class="rep" href="#">Reply</a> -->
                                                     </div>
