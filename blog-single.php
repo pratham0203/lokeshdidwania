@@ -172,7 +172,7 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="cmt padDiv">
-                                        <form id="comment-form" method="post" action="" role="form">
+                                        <form id="comment-form" method="post" action="" role="form" name="commentform">
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
@@ -221,10 +221,11 @@
                     date_default_timezone_set('Asia/Kolkata');
                     $date = date("Y-m-d");
                     $time = date("h:i A");
+                    $notify = "Yes";
 
                     //SQL Insert Query
-                    $insert_query = "INSERT INTO blog_comments(Blog_ID, Name, Email, Comment, Date, Time)
-                    VALUES ('$id', '$name', '$email', '$comment', '$date', '$time')";
+                    $insert_query = "INSERT INTO blog_comments(Blog_ID, Name, Email, Comment, Date, Time, Notify)
+                    VALUES ('$id', '$name', '$email', '$comment', '$date', '$time', '$notify')";
 
                     $ins = mysqli_query($conn,$insert_query);
 
@@ -233,7 +234,7 @@
                     ?>
 
         <script>
-        window.location.replace("blog-single.php");
+        window.location.replace("blogs.php");
         </script>
         <?php
                     }
@@ -241,7 +242,7 @@
                     ?>
         <script>
         alert("Unable to post comment");
-        window.location.replace("blog-single.php");
+        window.location.replace("blogs.php");
         </script>
         <?php
                     }
