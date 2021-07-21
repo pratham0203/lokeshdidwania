@@ -21,7 +21,7 @@ if($ins){
 
 <script>
 alert("Book added successfully");
-window.location.replace("../books-add.html");
+window.location.replace("../books-add.php");
 </script>
 <?php
 }
@@ -29,7 +29,7 @@ else{
 ?>
 <script>
 alert("Failed to add book");
-window.location.replace("../books-add.html");
+window.location.replace("../books-add.php");
 </script>
 <?php
 }

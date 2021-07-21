@@ -23,7 +23,7 @@ if($ins){
 
 <script>
 alert("Blog added successfully");
-window.location.replace("../blogs-add.html");
+window.location.replace("../blogs-add.php");
 </script>
 <?php
 }
@@ -31,7 +31,7 @@ else{
 ?>
 <script>
 alert("Failed to add blog");
-window.location.replace("../blogs-add.html");
+window.location.replace("../blogs-add.php");
 </script>
 <?php
 }
