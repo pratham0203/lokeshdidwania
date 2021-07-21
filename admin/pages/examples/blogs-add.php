@@ -386,7 +386,7 @@
                                         <input type="text" id="inputImage" class="form-control" name="image" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputCover">Book Cover Upload</label><br />
+                                        <label for="inputCover">Blog Image Upload</label><br />
                                         <input type="file" id="inputCover" name="cover" required>
                                     </div>
                                     <div class="form-group">
