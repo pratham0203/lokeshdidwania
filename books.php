@@ -71,7 +71,15 @@
             <br>
         </div>
 
-        <?php
+
+        <div id="portfolio" class="paddsection">
+
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="row portfolio-container">
+                        <?php
 
 include 'connection.php';
 
@@ -88,10 +96,6 @@ while ($res = mysqli_fetch_array($query)) {
     $price = $res['Price'];
     $visible = $res['Visible'];
 ?>
-        <div id="portfolio" class="paddsection">
-            <div class="container">
-                <div class="row">
-                    <div class="row portfolio-container">
                         <div class="col-lg-4 col-md-6 portfolio-item filter-app" style="text-align: center;">
                             <a href="<?php echo $link; ?>"><img src="<?php echo $image; ?>" class="img-fluid" alt=""
                                     width="250"></a>
@@ -110,15 +114,17 @@ while ($res = mysqli_fetch_array($query)) {
                             <p style="color: rgb(29, 26, 26); font-weight: 200; font-size: larger;"><?php echo $desc; ?>
                             </p>
                         </div>
+                        <?php
+
+}
+
+?>
                     </div>
                 </div>
             </div><!-- End Portfolio Section -->
         </div>
-        <?php
 
-                }
 
-                    ?>
     </main>
 
     <!-- ======= Footer ======= -->
