@@ -511,7 +511,8 @@
                                                         <span><a href="#"><?php echo $date; ?> at
                                                                 <?php echo $time; ?></a></span>
                                                         <span class="float-right">
-                                                            <a href="php/deletecomment.php?id=<?php echo $cid; ?>">
+                                                            <a href="php/deletecomment.php?id=<?php echo $cid; ?>"
+                                                                onclick="return confirm('Are you sure you want to delete the comment?')">
                                                                 <i class="fas fa-trash"></i></a>
                                                         </span>
                                                         <p class="mb-10"><?php echo $comment; ?> </p>

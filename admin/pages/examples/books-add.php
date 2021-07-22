@@ -392,10 +392,6 @@
                                         <input type="text" id="inputCover" class="form-control" name="cover" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputCover">Book Cover Upload</label><br />
-                                        <input type="file" id="inputCover" name="cover" required>
-                                    </div>
-                                    <div class="form-group">
                                         <label for="inputVisible">Visibility</label>
                                         <select id="inputVisible" class="form-control custom-select" name="visible">
                                             <option selected value="Yes">Yes</option>
@@ -411,7 +407,9 @@
                     <div class="row">
                         <div class="col-12">
                             <a href="#" class="btn btn-secondary">Cancel</a>
-                            <input type="submit" value="Add Book" class="btn btn-success float-right" name="submit">
+                            <input type="submit" value="Add Book"
+                                onclick="return confirm('Are you sure you want to add the book?')" class=" btn btn-success
+                                float-right" name="submit">
                         </div>
                     </div>
                 </form>

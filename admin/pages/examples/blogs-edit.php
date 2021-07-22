@@ -471,10 +471,12 @@
                     <div class="row">
                         <div class="col-12">
                             <a href="#" class="btn btn-secondary">Cancel</a>
-                            <a href="php/deleteblog.php?id=<?php echo $blid; ?>" class=" btn btn-danger float-right"
-                                name="delete">Delete Blog</a>
-                            <input type="submit" value="Update Blog" class="btn btn-success float-right" name="submit"
-                                style="margin-right:16px;">
+                            <a href="php/deleteblog.php?id=<?php echo $blid; ?>"
+                                onclick="return confirm('Are you sure you want to delete the blog?')"
+                                class=" btn btn-danger float-right" name="delete">Delete Blog</a>
+                            <input type="submit" value="Update Blog"
+                                onclick="return confirm('Are you sure? This will update the blog.')"
+                                class="btn btn-success float-right" name="submit" style="margin-right:16px;">
                         </div>
                     </div>
                 </form>

@@ -473,11 +473,13 @@
                     <div class="row">
                         <div class="col-12">
                             <a href="#" class="btn btn-secondary">Cancel</a>
-                            <a href="php/deletebook.php?id=<?php echo $bkid; ?>" class=" btn btn-danger float-right"
-                                name="delete">Delete
+                            <a href="php/deletebook.php?id=<?php echo $bkid; ?>"
+                                onclick="return confirm('Are you sure you want to delete the book?')"
+                                class=" btn btn-danger float-right" name="delete">Delete
                                 Book</a>
-                            <input type="submit" value="Update Book" class="btn btn-success float-right" name="submit"
-                                style="margin-right:16px;">
+                            <input type="submit" value="Update Book"
+                                onclick="return confirm('Are you sure? This will update the book.')"
+                                class="btn btn-success float-right" name="submit" style="margin-right:16px;">
                         </div>
                     </div>
                 </form>
