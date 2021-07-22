@@ -76,7 +76,7 @@ div {
     <div class="number">400</div>
     <div class="text"><span>Oops... </span><br>The Server could not understand that request.</div>
     <a class="me" href="https://codepen.io/uzcho_/pens/popular/?grid_type=list" target="_blank"></a>
-    <br><br><a type="button" href="index.html" class="button1">BACK TO HOMEPAGE</a>
+    <br><br><a type="button" href="/" class="button1">BACK TO HOMEPAGE</a>
   </div>
   
 </body>

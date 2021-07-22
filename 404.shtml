@@ -203,7 +203,7 @@ body {
 	<div class="left-section">
 		<div class="inner-content">
 			<h1 class="heading">404</h1>
-			<p class="subheading">If you think what you're looking for should be here, please contact the site owner. <br><br><a type="button" href="index.html" class="button1">BACK TO HOMEPAGE</a></p>
+			<p class="subheading">If you think what you're looking for should be here, please contact the site owner. <br><br><a type="button" href="/" class="button1">BACK TO HOMEPAGE</a></p>
       
 		</div>
 	</div>

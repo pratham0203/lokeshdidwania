@@ -132,7 +132,7 @@ html {
     <div class="vc-content">
       <h1 class="vc-heading">500</h1>
       <p class="vc-sub-heading">Internal Server <span class="blink-infinite">Error</span></p>
-      <br><br><a type="button" href="index.html" class="button1">BACK &nbsp; TO &nbsp; HOMEPAGE</a>
+      <br><br><a type="button" href="/" class="button1">BACK &nbsp; TO &nbsp; HOMEPAGE</a>
     </div>
   </div>
 </div>

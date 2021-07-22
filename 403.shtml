@@ -72,7 +72,7 @@ html, body {
     <div class="txt">
        Forbidden<span class="blink">_</span>
     </div>
-    <br><a type="button" href="index.html" class="button1">BACK TO HOMEPAGE</a>
+    <br><a type="button" href="/" class="button1">BACK TO HOMEPAGE</a>
  </div>
 
 </body>

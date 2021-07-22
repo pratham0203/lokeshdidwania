@@ -126,7 +126,7 @@ body {
 function generateLocks() {
   const lock = document.createElement('div'),
         position = generatePosition();
-  lock.innerHTML = '<a href="index.html"><div class="top"></div><div class="bottom"></div></a>';
+  lock.innerHTML = '<a href="/"><div class="top"></div><div class="bottom"></div></a>';
   lock.style.top = position[0];
   lock.style.left = position[1];
   lock.classList = 'lock'// generated';
