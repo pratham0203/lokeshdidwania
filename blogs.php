@@ -96,12 +96,12 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="journal-info mb-30">
 
-                            <a href="blog-single.php?id=<?php echo $id; ?>"><img src="<?php echo $image; ?>"
+                            <a href="blog-single?id=<?php echo $id; ?>"><img src="<?php echo $image; ?>"
                                     class="img-responsive" alt="img" /></a>
 
                             <div class="journal-txt">
 
-                                <h4><a href="blog-single.php?id=<?php echo $id; ?>"><?php echo $title; ?></a>
+                                <h4><a href="blog-single?id=<?php echo $id; ?>"><?php echo $title; ?></a>
                                 </h4>
                                 <p class="separator"><?php echo substr($content, 0, 200); ?>
                                 </p>
