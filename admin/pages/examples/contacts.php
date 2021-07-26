@@ -154,7 +154,7 @@
                                         <?php echo $name; ?>
                                         <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
                                     </h3>
-                                    <p class="text-sm"><?php echo substr($message, 0, 100); ?></p>
+                                    <p class="text-sm"><?php echo substr($message, 0, 20); ?></p>
                                     <!-- <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p> -->
                                 </div>
                             </div>
@@ -383,18 +383,19 @@
                             ?>
                             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
                                 <div class="card bg-light d-flex flex-fill">
-                                    <div class="card-header text-muted border-bottom-0">
-                                        <?php echo $name; ?>,
+                                    <div class="card-header text-muted border-bottom-4">
+                                        <h5 style="margin-left:20px;"><b>Sender:</b> <?php echo $name; ?></h5>
                                         <div class="card-body pt-0">
                                             <div class="row">
                                                 <div class="col-7">
-                                                    <h2 class="lead"><b>
-                                                            <?php echo $subject; ?>
-                                                        </b></h2>
+                                                
+                                                    <h5 class="lead" style="padding: 0px;overflow-wrap: break-word; float: left;">
+                                                    <?php echo $subject; ?>
+                                                    </h5>
                                                     <p class="text-muted text-sm"><?php echo $message; ?>
                                                     </p>
-                                                    <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                        <li class="small"></i></span> Email:
+                                                    <ul class="ml-0 mb-0 fa-ul text-muted">
+                                                        <li class="small" style="float: left;"></i></span>Email:
                                                             <?php echo $email; ?></li>
                                                     </ul>
                                                 </div>
