@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin | Blog Add</title>
+    <title>Admin | Podcast Add</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -280,7 +280,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/admin/pages/examples/blogs-add.php" class="nav-link active">
+                                    <a href="/admin/pages/examples/blogs-add.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Blogs Add</p>
                                     </a>
@@ -303,7 +303,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/admin/pages/examples/podcasts-add.php" class="nav-link">
+                                    <a href="/admin/pages/examples/podcasts-add.php" class="nav-link active">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Podcast Add</p>
                                     </a>
@@ -340,12 +340,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Blogs Add</h1>
+                            <h1>Podcasts Add</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Blogs Add</li>
+                                <li class="breadcrumb-item active">Podcasts Add</li>
                             </ol>
                         </div>
                     </div>
@@ -354,12 +354,12 @@
 
             <!-- Main content -->
             <section class="content">
-                <form role="form" action="php/addblogs.php" method="POST">
+                <form role="form" action="php/addpodcasts.php" method="POST">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card card-primary">
                                 <div class="card-header">
-                                    <h3 class="card-title">New Blog</h3>
+                                    <h3 class="card-title">New Podcast</h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse"
                                             title="Collapse">
@@ -369,8 +369,8 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="inputTitle">Blog Title</label>
-                                        <input type="text" id="inputTitle" class="form-control" name="bltitle" required>
+                                        <label for="inputTitle">Podcast Title</label>
+                                        <input type="text" id="inputTitle" class="form-control" name="title" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputContent">Content</label>
@@ -378,12 +378,8 @@
                                             required></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputAuthor">Author</label>
-                                        <input type="text" id="inputAuthor" class="form-control" name="author" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputImage">Blog Image</label>
-                                        <input type="text" id="inputImage" class="form-control" name="image" required>
+                                        <label for="inputImage">Embed Link</label>
+                                        <input type="text" id="inputImage" class="form-control" name="link" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputVisible">Visibility</label>
@@ -401,8 +397,8 @@
                     <div class="row">
                         <div class="col-12">
                             <a href="#" class="btn btn-secondary">Cancel</a>
-                            <input type="submit" value="Add Blog"
-                                onclick="return confirm('Are you sure you want to add the blog?')"
+                            <input type="submit" value="Add Podcast"
+                                onclick="return confirm('Are you sure you want to add the podcast?')"
                                 class="btn btn-success float-right" name="submit">
                         </div>
                     </div>

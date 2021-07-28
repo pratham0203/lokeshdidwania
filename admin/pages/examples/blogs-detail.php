@@ -310,13 +310,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/admin/pages/examples/blogs-add.php" class="nav-link">
+                                    <a href="/admin/pages/examples/podcasts-add.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Podcast Add</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/pages/examples/blogs-detail.php" class="nav-link">
+                                    <a href="/admin/pages/examples/podcasts-detail.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Podcast Detail</p>
                                     </a>

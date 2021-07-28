@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin | Blog Add</title>
+    <title>Admin | Podcast Edit</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -102,7 +102,7 @@
                     while ($res = mysqli_fetch_array($query)) {
                         $count2 = $res['count(Comment_ID)'];
                     }
-
+                    
                     $select_query = "select count(message_id) from contact_message where notify = 'Yes'";
 
                     $query = mysqli_query($conn, $select_query);
@@ -119,6 +119,7 @@
 
                     <?php
                         }
+                    
                     ?>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <!-- Message Start -->
@@ -204,7 +205,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="../../index.php" class="brand-link">
-                <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation"
+                <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-"
                     style="opacity:1; max-height: 45px;">
                 <span class="brand-text font-weight-light" style="visibility: hidden;">Admin Panel</span>
             </a>
@@ -280,9 +281,15 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/admin/pages/examples/blogs-add.php" class="nav-link active">
+                                    <a href="/admin/pages/examples/blogs-add.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Blogs Add</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/admin/pages/examples/blogs-edit.php" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Blogs Edit</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -306,6 +313,12 @@
                                     <a href="/admin/pages/examples/podcasts-add.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Podcast Add</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/admin/pages/examples/podcasts-edit.php" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Podcast Edit</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -340,12 +353,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Blogs Add</h1>
+                            <h1>Podcasts Edit</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Blogs Add</li>
+                                <li class="breadcrumb-item active">Podcasts Edit</li>
                             </ol>
                         </div>
                     </div>
@@ -354,12 +367,65 @@
 
             <!-- Main content -->
             <section class="content">
-                <form role="form" action="php/addblogs.php" method="POST">
+                <?php 
+                include 'connection.php';
+
+                $id = $_GET['id'];
+                
+                $ip = "";
+
+                        if (!empty($_SERVER["HTTP_CLIENT_IP"]))
+                        {
+                            // Check for IP address from shared Internet
+                            $ip = $_SERVER["HTTP_CLIENT_IP"];
+                        }
+                        elseif (!empty($_SERVER["HTTP_X_FORWARDED_FOR"]))
+                        {
+                            // Check for the proxy user
+                            $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+                        }
+                        else
+                        {
+                            $ip = $_SERVER["REMOTE_ADDR"];
+                        }
+                    
+                    $select_query = "select Ip_Address from admin_login where Ip_Address = '$ip'";
+
+                    $query = mysqli_query($conn, $select_query);
+
+                    while ($res = mysqli_fetch_array($query)) {
+                        $ipaddress = $res['Ip_Address'];
+                    }
+
+                    if ($ip !== $ipaddress){
+                      ?>
+                <script>
+                window.location.replace("/index.html");
+                </script>
+                <?php 
+                    }
+
+                $select_query = "select * from podcasts
+                where Podcast_ID = '$id'";
+                
+                $query = mysqli_query($conn, $select_query);
+
+                while ($res = mysqli_fetch_array($query)) {
+                    $pid = $res['Podcast_ID'];
+                    $title = $res['Podcast_Title'];
+                    $content = $res['Podcast_Content'];
+                    $video = $res['Podcast_Link'];
+                    $date = $res['Date'];
+                    $visible = $res['Visible'];
+
+
+                ?>
+                <form role="form" action="php/updatepodcasts.php?id=<?php echo $pid; ?>" method="POST">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card card-primary">
                                 <div class="card-header">
-                                    <h3 class="card-title">New Blog</h3>
+                                    <h3 class="card-title">Edit Podcast</h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse"
                                             title="Collapse">
@@ -369,25 +435,29 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="inputTitle">Blog Title</label>
-                                        <input type="text" id="inputTitle" class="form-control" name="bltitle" required>
+                                        <label for="inputID">Podcast ID</label>
+                                        <input type="type" value="<?php echo $pid; ?>" id="inputID" class="form-control"
+                                            name="blid" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputTitle">Podcast Title</label>
+                                        <input type="text" value="<?php echo $title; ?>" id="inputTitle"
+                                            class="form-control" name="title" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputContent">Content</label>
                                         <textarea id="inputContent" class="form-control" rows="4" name="content"
-                                            required></textarea>
+                                            required><?php echo $content; ?></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputAuthor">Author</label>
-                                        <input type="text" id="inputAuthor" class="form-control" name="author" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputImage">Blog Image</label>
-                                        <input type="text" id="inputImage" class="form-control" name="image" required>
+                                        <label for="inputImage">Embed Link</label>
+                                        <input type="text" id="inputImage" value="<?php echo $video; ?>"
+                                            class="form-control" name="link" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputVisible">Visibility</label>
-                                        <select id="inputVisible" class="form-control custom-select" name="visible">
+                                        <select id="inputVisible" class="form-control custom-select" name="visible"
+                                            required>
                                             <option selected value="Yes">Yes</option>
                                             <option value="No">No</option>
                                         </select>
@@ -401,12 +471,18 @@
                     <div class="row">
                         <div class="col-12">
                             <a href="#" class="btn btn-secondary">Cancel</a>
-                            <input type="submit" value="Add Blog"
-                                onclick="return confirm('Are you sure you want to add the blog?')"
-                                class="btn btn-success float-right" name="submit">
+                            <a href="php/deletepodcast.php?id=<?php echo $pid; ?>"
+                                onclick="return confirm('Are you sure you want to delete the podcast?')"
+                                class=" btn btn-danger float-right" name="delete">Delete Podcast</a>
+                            <input type="submit" value="Update Podcast"
+                                onclick="return confirm('Are you sure? This will update the podcast.')"
+                                class="btn btn-success float-right" name="submit" style="margin-right:16px;">
                         </div>
                     </div>
                 </form>
+                <?php 
+                }
+                ?>
             </section>
             <!-- /.content -->
         </div>
