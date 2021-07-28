@@ -23,7 +23,7 @@ if($ins){
 
 <script>
 alert("Blog added successfully");
-window.location.replace("../blogs-add.php");
+window.location.replace("../blogs-detail.php");
 </script>
 <?php
 }
