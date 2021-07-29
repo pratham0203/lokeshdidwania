@@ -65,7 +65,7 @@
 
         <div class="container">
             <div class="section-title text-center">
-                <h2>journal</h2>
+                <h2>Blogs</h2>
             </div>
         </div>
 
@@ -75,14 +75,14 @@
 
                     <?php
 
-                        include 'connection.php';
+                    include 'connection.php';
 
-                        $select_query = " select * from blogs where Visible = 'Yes'
+                    $select_query = " select * from blogs where Visible = 'Yes'
                         order by Blog_ID desc";
 
-                        $query = mysqli_query($conn,$select_query);
-                        
-                        while($res = mysqli_fetch_array($query)){
+                    $query = mysqli_query($conn, $select_query);
+
+                    while ($res = mysqli_fetch_array($query)) {
                         $id = $res['Blog_ID'];
                         $title = $res['Blog_Title'];
                         $content = $res['Blog_Content'];
@@ -90,8 +90,8 @@
                         $author = $res['Blog_Author'];
                         $date = $res['Date'];
                         $visible = $res['Visible'];
-                        
-                        ?>
+
+                    ?>
 
                     <div class="col-lg-4 col-md-6">
                         <div class="journal-info mb-30">
@@ -114,7 +114,7 @@
                     <?php
 
                     }
-                    
+
                     ?>
 
                 </div>
