@@ -10,12 +10,12 @@ $notify = "Yes";
 
 //SQL Insert Query
 $sql_query = "INSERT INTO contact_message(name, email, subject, message, notify)
-VALUES ('$name', '$email', '$subject', '$message', $notify)";
+VALUES ('$name', '$email', '$subject', '$message', '$notify')";
 
 $ins = mysqli_query($conn,$sql_query);
 
 // 
-$to = "aharnishks@gmail.com";
+$to = "lokeshdidwania3@gmail.com";
 
 $details = "Sender Details: <br>Name: " . $name . ", Email ID: ". $email . "<br><br>Message:<br>"; 
 
@@ -36,7 +36,7 @@ if($ins){
 ?>
 
 <script>
-window.location.replace("../thankyou.html");
+window.location.replace("../thankyou");
 </script>
 <?php
 }
@@ -44,7 +44,7 @@ else{
 ?>
 <script>
 alert("Unable to send message");
-window.location.replace("../contact.html");
+window.location.replace("../contact");
 </script>
 <?php
 }

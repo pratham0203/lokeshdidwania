@@ -29,7 +29,7 @@ if($ins){
 ?>
 
 <script>
-window.location.replace("../podcast.html");
+window.location.replace("../podcast");
 </script>
 <?php
 }
@@ -37,7 +37,7 @@ else{
 ?>
 <script>
 alert("Unable to send email");
-window.location.replace("../podcast.html");
+window.location.replace("../podcast");
 </script>
 <?php
 }
